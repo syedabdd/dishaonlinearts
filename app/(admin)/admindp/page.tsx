@@ -26,12 +26,9 @@ export default async function AdminPage() {
   const [doubtsResult]: any = await db.execute("SELECT COUNT(*) as count FROM ask_doubts");
   const totalDoubts = doubtsResult[0]?.count || 0;
 
-  const [materialsResult]: any = await db.execute("SELECT COUNT(*) as count FROM ArtsLab");
-  const studyMaterials = materialsResult[0]?.count || 0;
+  const studyMaterials = 0;
 
-  const [recentFeedback]: any = await db.execute(
-    "SELECT * FROM ArtsLabFeedback ORDER BY createdAt DESC LIMIT 10"
-  );
+  const recentFeedback: any[] = [];
 
   // Live Visitors (active within the last 5 minutes)
   const [liveVisitorsResult]: any = await db.execute(

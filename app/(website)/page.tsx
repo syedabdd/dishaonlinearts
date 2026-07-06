@@ -21,13 +21,13 @@ export default async function HomePage() {
     <>
       <Hero banners={activeBanners} />
       <Hero2 />
+      <PopularCategory />
+      <Liveclasses />
       <TrustStats />
       <TrendingCourses />
       <StudyMaterial />
-      <PopularCategory />
-      <Liveclasses />
-      <JoinOurYoutubeFam />
       <DigitalEcoSystem />
+      <JoinOurYoutubeFam />
       <Toppers />
     </>
   );

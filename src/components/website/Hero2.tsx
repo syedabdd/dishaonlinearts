@@ -5,14 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import {
-  Sparkles,
-  BrainCircuit,
-  BookOpenCheck,
-  Trophy,
+  Globe,
+  Landmark,
+  BookOpen,
   ArrowRight,
-  Smartphone,
-  Star,
-  Zap,
   Download,
 } from "lucide-react";
 import { FaYoutube, FaWhatsapp } from "react-icons/fa";
@@ -26,80 +22,52 @@ const fadeUp = {
     transition: {
       duration: 0.7,
       delay: i * 0.12,
-      ease: "easeInOut",
+      ease: "easeOut",
     },
   }),
-};
-
-const fadeLeft = {
-  hidden: { opacity: 0, x: -50 },
-  show: (i = 0) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      delay: i * 0.1,
-      ease: "easeInOut",
-    },
-  }),
-};
-
-const slideLeft = {
-  hidden: { opacity: 1, x: 100 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: "easeInOut" },
-  },
 };
 
 // ─── Feature Card ─────────────────────────────────────────────────────────────
-function FeatureCard({ icon, bg, title, desc, index }: any) {
+function FeatureCard({ icon, title, desc, index }: any) {
   return (
     <motion.div
       custom={index}
-      variants={fadeLeft as any}
-      className="group relative flex items-start gap-4 backdrop-blur-sm rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-400 overflow-hidden"
+      variants={fadeUp as any}
+      className="group relative flex flex-col items-center text-center backdrop-blur-md rounded-[32px] p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
       style={{
         backgroundColor: "var(--bg-card)",
         border: "1px solid var(--border-color)",
       }}
     >
-      {/* Gradient sweep on hover */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
         style={{
           background:
-            "linear-gradient(90deg, rgba(26,46,108,0.04), rgba(192,32,42,0.04), rgba(26,46,108,0.04))",
+            "linear-gradient(135deg, rgba(26,46,108,0.03), rgba(192,32,42,0.03))",
         }}
       />
-
       <div
-        className={`relative z-10 h-12 w-12 rounded-xl ${bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm`}
+        className="relative z-10 h-16 w-16 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500 shadow-md mb-6"
+        style={{
+          background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+        }}
       >
         {icon}
       </div>
-
-      <div className="relative z-10 text-left">
+      <div className="relative z-10">
         <h3
-          className="font-bold text-base md:text-lg leading-tight"
+          className="font-bold text-xl mb-2"
           style={{ color: "var(--text-primary)" }}
         >
           {title}
         </h3>
         <p
-          className="mt-1 text-sm md:text-base"
+          className="text-sm md:text-base leading-relaxed"
           style={{ color: "var(--text-secondary)" }}
         >
           {desc}
         </p>
       </div>
-
-      {/* Right accent line */}
-      <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-0 group-hover:h-12 rounded-l-full transition-all duration-400"
-        style={{ background: "linear-gradient(180deg, #1a2e6c, #c0202a)" }}
-      />
     </motion.div>
   );
 }
@@ -117,7 +85,7 @@ function SocialButton({ icon, text, to = "#", index }: any) {
         href={to}
         target={to.startsWith("http") ? "_blank" : "_self"}
         rel="noopener noreferrer"
-        className="flex items-center gap-2 rounded-xl px-4 py-2.5 hover:shadow-lg transition-all duration-300 group"
+        className="flex items-center gap-2 rounded-2xl px-5 py-3 hover:shadow-lg transition-all duration-300 group"
         style={{
           backgroundColor: "var(--bg-card)",
           border: "1px solid var(--border-color)",
@@ -127,7 +95,7 @@ function SocialButton({ icon, text, to = "#", index }: any) {
           {icon}
         </span>
         <span
-          className="font-semibold text-sm transition-colors"
+          className="font-medium text-sm transition-colors"
           style={{ color: "var(--text-secondary)" }}
         >
           {text}
@@ -145,335 +113,225 @@ export default function Hero2() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden pt-14 pb-10 sm:pt-20 mb-3 md:mb-0 sm:pb-16 lg:py-24 lg:pb-32 transition-colors duration-300"
+      className="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-24 lg:py-32 transition-colors duration-500"
       style={{ backgroundColor: "var(--bg-section)" }}
     >
-      {/* ── Background Orbs ── */}
+      {/* ── Artistic Background Blobs (Navy & Red) ── */}
       <div
-        className="absolute top-[-80px] right-[-80px] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-        style={{ backgroundColor: "rgba(26,46,108,0.18)" }}
+        className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none opacity-60"
+        style={{ backgroundColor: "rgba(26,46,108,0.15)" }} 
       />
       <div
-        className="absolute bottom-[-100px] left-[-80px] w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none"
+        className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none opacity-60"
         style={{ backgroundColor: "rgba(192,32,42,0.12)" }}
       />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
-        style={{ backgroundColor: "rgba(26,46,108,0.10)" }}
-      />
-
-      {/* ── Decorative Grid ── */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, #1a2e6c 1px, transparent 1px),
-                            linear-gradient(to bottom, #1a2e6c 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-[100%] blur-[120px] pointer-events-none opacity-30"
+        style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
       />
 
       {/* ── Content ── */}
-      <div className="relative max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
-          {/* ── LEFT: Image Panel ── */}
-          <motion.div
-            variants={slideLeft as any}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            className="order-2 lg:order-1 flex justify-center"
+      <div className="relative max-w-[1200px] mx-auto px-5 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10">
+        
+        {/* Badge */}
+        <motion.div
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={0}
+          className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full mb-8 shadow-sm"
+          style={{
+            background: "var(--disha-badge-bg)",
+            border: "1px solid var(--disha-badge-border)",
+          }}
+        >
+          <BookOpen size={16} style={{ color: "#c0202a" }} />
+          <span
+            className="text-sm font-bold tracking-wide uppercase"
+            style={{ color: "var(--disha-navy-text)" }}
           >
-            <div className="relative w-full max-w-[480px]">
-              {/* Glow ring */}
-              <div
-                className="absolute -inset-4 rounded-[40px] blur-2xl"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(26,46,108,0.25), rgba(192,32,42,0.15))",
-                }}
-              />
+            Bihar's No.1 Arts Platform
+          </span>
+        </motion.div>
 
-              {/* Card */}
-              <div
-                className="relative backdrop-blur-md rounded-[32px] p-8 md:p-10 overflow-hidden"
-                style={{
-                  backgroundColor: "var(--bg-card)",
-                  border: "1px solid var(--border-color)",
-                  boxShadow: "0 30px 80px rgba(26,46,108,0.15)",
-                }}
-              >
-                {/* Inner shimmer */}
-                <div
-                  className="absolute inset-0 rounded-[32px]"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.6), rgba(26,46,108,0.05), rgba(192,32,42,0.03))",
-                  }}
-                />
-
-                <Image
-                  src="/welcome.webp"
-                  alt="Disha Arts Classes Classes"
-                  className="relative z-10 w-full h-auto object-contain"
-                  width={800}
-                  height={600}
-                  priority={true}
-                />
-              </div>
-
-              {/* Floating badge – Students */}
-              <motion.div
-                initial={{ opacity: 0, x: -30, y: 20 }}
-                animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="absolute sm:-left-11 sm:bottom-16 hidden rounded-2xl shadow-xl px-4 py-3 sm:flex items-center gap-3"
-                style={{
-                  backgroundColor: "var(--bg-card)",
-                  border: "1px solid var(--border-color)",
-                }}
-              >
-                <div className="w-9 h-9 rounded-xl bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-                  <Star size={16} className="text-white fill-white" />
-                </div>
-                <div>
-                  <p
-                    className="text-xs leading-tight"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    Active Students
-                  </p>
-                  <p
-                    className="text-sm font-bold"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    50,000+
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Floating badge – Success */}
-              <motion.div
-                initial={{ opacity: 0, x: 30, y: -20 }}
-                animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                className="absolute -right-4 top-8 rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3"
-                style={{
-                  backgroundColor: "var(--bg-card)",
-                  border: "1px solid var(--border-color)",
-                }}
-              >
-                <div className="w-9 h-9 rounded-xl bg-linear-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
-                  <Zap size={16} className="text-white fill-white" />
-                </div>
-                <div>
-                  <p
-                    className="text-xs leading-tight"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    Board Success
-                  </p>
-                  <p
-                    className="text-sm font-bold"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    95% Rate
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* ── RIGHT: Text Content ── */}
-          <motion.div
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            className="order-1 lg:order-2 text-center lg:text-left"
+        {/* Heading */}
+        <motion.h1
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={1}
+          className="text-5xl sm:text-6xl xl:text-[4.5rem] font-bold leading-[1.1] tracking-tight max-w-4xl"
+          style={{ color: "var(--text-primary)" }}
+        >
+          Welcome to
+          <span
+            className="block mt-2 font-extrabold"
+            style={{
+              background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
           >
-            {/* Badge */}
-            <motion.div
-              variants={fadeUp as any}
-              custom={0}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-2 shadow-sm"
+            Disha Arts Classes
+          </span>
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={2}
+          className="mt-8 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          Best Online Classes for Class 11th & 12th Arts (BSEB). Learn History, Geography, Political Science & Economics from expert faculty through live classes and smart study materials.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={3}
+          className="mt-12 flex flex-col sm:flex-row gap-5 items-center justify-center w-full"
+        >
+          <Link
+            href="https://play.google.com/store/apps/details?id=co.dishaonlineclasses"
+            target="_blank"
+            className="w-full sm:w-auto"
+          >
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative w-full sm:w-auto overflow-hidden text-white font-bold px-10 py-4 rounded-[20px] transition-all duration-300 shadow-xl"
               style={{
-                background: "var(--disha-badge-bg)",
-                border: "1px solid var(--disha-badge-border)",
+                background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+                boxShadow: "0 8px 30px rgba(26,46,108,0.40)",
               }}
             >
-              <Sparkles size={15} style={{ color: "#c0202a" }} />
-              <span
-                className="text-sm font-semibold"
-                style={{ color: "var(--disha-navy-text)" }}
-              >
-                Bihar's No.1 Digital Learning Ecosystem
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out" />
+              <span className="relative flex items-center justify-center gap-3 text-lg">
+                Explore Courses
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1.5 transition-transform duration-300"
+                />
               </span>
-            </motion.div>
+            </motion.button>
+          </Link>
 
-            {/* Heading */}
-            <motion.h1
-              variants={fadeUp as any}
-              custom={1}
-              className="text-4xl sm:text-5xl xl:text-[3.2rem] font-extrabold leading-tight"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Welcome to
-              <span
-                className="block mt-1"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Disha Arts Classes
-              </span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              variants={fadeUp as any}
-              custom={2}
-              className="mt-5 text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Best Online Classes for Class 11th & 12th Arts (BSEB Bihar
-              Board) for Bihar Students. Learn History, Geography, Political Science &
-              Economics from expert faculty through live classes, smart study
-              materials, doubt-solving support and complete Bihar Board exam
-              preparation for top results.
-            </motion.p>
-
-            {/* Feature Cards */}
-            <motion.div
-              variants={{
-                hidden: {},
-                show: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-                },
+          <Link href="/download" className="w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative w-full sm:w-auto overflow-hidden font-bold px-10 py-4 rounded-[20px] transition-all duration-300"
+              style={{
+                background: "transparent",
+                border: "2px solid #1a2e6c",
+                color: "#1a2e6c"
               }}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              className="mt-8 space-y-3"
             >
-              <FeatureCard
-                index={0}
-                icon={<BrainCircuit size={22} className="text-red-600" />}
-                bg="bg-red-50"
-                title="Expert Arts Faculties"
-                desc="Learn History, Geography and Political Science from experienced mentors."
-              />
-              <FeatureCard
-                index={1}
-                icon={<BookOpenCheck size={22} className="text-orange-600" />}
-                bg="bg-orange-50"
-                title="Board Exam Masterclass"
-                desc="High-scoring notes, PYQs and chapter-wise preparation."
-              />
-              <FeatureCard
-                index={2}
-                icon={<Trophy size={22} className="text-blue-600" />}
-                bg="bg-blue-50"
-                title="Topper's Legacy"
-                desc="Producing Bihar Board Arts toppers year after year."
-              />
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp as any}
-              custom={6}
-              className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center sm:justify-start justify-center w-full"
-            >
-              <Link
-                href="https://play.google.com/store/apps/details?id=co.dishaonlineclasses"
-                target="_blank"
-                className="w-full sm:w-auto"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="group cursor-pointer relative w-full sm:w-auto overflow-hidden text-white font-bold px-10 py-5 rounded-2xl transition-shadow duration-300"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
-                    boxShadow: "0 8px 30px rgba(26,46,108,0.40)",
-                  }}
-                >
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out" />
-
-                  <span className="relative flex items-center justify-center gap-3">
-                    Join Now &amp; Explore Batches
-                    <ArrowRight
-                      size={20}
-                      className="group-hover:translate-x-1.5 transition-transform duration-300"
-                    />
-                  </span>
-                </motion.button>
-              </Link>
-
-              <Link href="/download" className="w-full sm:w-auto">
-                <motion.button
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="group cursor-pointer relative w-full sm:w-auto overflow-hidden text-white font-bold px-10 py-5 rounded-2xl transition-shadow duration-300"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
-                    boxShadow: "0 8px 30px rgba(26,46,108,0.40)",
-                  }}
-                >
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out" />
-
-                  <span className="relative flex items-center justify-center gap-3">
-                    Download
-                    <Download
-                      size={20}
-                      className="group-hover:-translate-y-1 transition-transform duration-300"
-                    />
-                  </span>
-                </motion.button>
-              </Link>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              variants={fadeUp as any}
-              custom={7}
-              className="lg:mt-4 lg:pt-2 mt-8 pt-6 border-t"
-              style={{ borderColor: "var(--border-color)" }}
-            >
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-4 text-center lg:text-left"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Official Links
-              </p>
-              <motion.div
-                variants={{
-                  hidden: {},
-                  show: {
-                    transition: { staggerChildren: 0.08, delayChildren: 0.5 },
-                  },
-                }}
-                initial="hidden"
-                animate={inView ? "show" : "hidden"}
-                className="flex flex-wrap justify-center lg:justify-start items-center gap-3"
-              >
-                <SocialButton
-                  index={1}
-                  icon={<FaYoutube size={17} style={{ color: "#c0202a" }} />}
-                  text="YouTube"
-                  to="https://www.youtube.com/@DishaArtsClasses"
+              <span className="relative flex items-center justify-center gap-3 text-lg">
+                Download App
+                <Download
+                  size={20}
+                  className="group-hover:-translate-y-1 transition-transform duration-300"
                 />
-                <SocialButton
-                  index={2}
-                  icon={<FaWhatsapp size={17} className="text-green-500" />}
-                  text="WhatsApp"
-                  to="https://wa.me/917700879453"
-                />
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
+              </span>
+            </motion.button>
+          </Link>
+        </motion.div>
+
+        {/* Hero Image / Logo */}
+        <motion.div
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={4}
+          className="mt-16 sm:mt-20 relative w-full max-w-[600px] mx-auto flex justify-center"
+        >
+          {/* Glow ring behind image */}
+          <div
+            className="absolute -inset-4 rounded-[40px] blur-2xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(26,46,108,0.15), rgba(192,32,42,0.1))",
+            }}
+          />
+          <Image
+            src="/welcome.webp"
+            alt="Disha Arts Classes"
+            className="relative z-10 w-full h-auto object-contain rounded-3xl"
+            width={800}
+            height={600}
+            priority={true}
+          />
+        </motion.div>
+
+        {/* Feature Cards Grid */}
+        <motion.div
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.1, delayChildren: 0.5 },
+            },
+          }}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          className="mt-24 grid md:grid-cols-3 gap-8 w-full"
+        >
+          <FeatureCard
+            index={0}
+            icon={<Landmark size={28} className="text-white" />}
+            title="Expert Faculty"
+            desc="Learn humanities from highly experienced and passionate educators."
+          />
+          <FeatureCard
+            index={1}
+            icon={<BookOpen size={28} className="text-white" />}
+            title="Comprehensive Material"
+            desc="Curated notes, PYQs, and study resources tailored for the Bihar Board."
+          />
+          <FeatureCard
+            index={2}
+            icon={<Globe size={28} className="text-white" />}
+            title="Top Results"
+            desc="Consistently producing top-tier results in Arts state board exams."
+          />
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          variants={fadeUp as any}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          custom={6}
+          className="mt-20 pt-8 border-t w-full max-w-3xl flex flex-col items-center"
+          style={{ borderColor: "var(--border-color)" }}
+        >
+          <p
+            className="text-xs font-bold uppercase tracking-widest mb-6"
+            style={{ color: "var(--text-muted)" }}
+          >
+            CONNECT WITH US
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            <SocialButton
+              index={1}
+              icon={<FaYoutube size={18} style={{ color: "#c0202a" }} />}
+              text="YouTube"
+              to="https://www.youtube.com/@DishaArtsClasses"
+            />
+            <SocialButton
+              index={2}
+              icon={<FaWhatsapp size={18} className="text-green-500" />}
+              text="WhatsApp"
+              to="https://wa.me/917700879453"
+            />
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -84,25 +84,25 @@ const categories = [
   },
   {
     id: 12,
-    title: "STREAM: ARTS / ARTS / COMMERCE",
+    title: "STREAM: ARTS / COMMERCE",
     icon: Layers,
     link: "https://dishaonlineclasses.com/",
   },
 ];
 
 const gradients = [
-  "from-blue-500 to-cyan-500",
-  "from-purple-500 to-pink-500",
-  "from-green-500 to-emerald-500",
-  "from-orange-500 to-red-500",
-  "from-indigo-500 to-violet-500",
-  "from-yellow-500 to-amber-500",
-  "from-teal-500 to-cyan-500",
-  "from-rose-500 to-pink-500",
-  "from-sky-500 to-blue-600",
-  "from-fuchsia-500 to-purple-600",
-  "from-lime-500 to-green-600",
-  "from-violet-500 to-indigo-600",
+  "from-[#1a2e6c] to-[#2f4fb8]", // Navy
+  "from-[#c0202a] to-[#f44a4a]", // Red
+  "from-[#2f4fb8] to-[#1a2e6c]",
+  "from-[#f44a4a] to-[#c0202a]",
+  "from-[#1a2e6c] to-[#c0202a]", // Navy to Red
+  "from-[#c0202a] to-[#1a2e6c]", // Red to Navy
+  "from-[#1a2e6c] to-[#4f68c7]",
+  "from-[#c0202a] to-[#ff7a7a]",
+  "from-[#1e3a96] to-[#1a2e6c]",
+  "from-[#e0252e] to-[#9a181f]",
+  "from-[#4f68c7] to-[#1e3a96]",
+  "from-[#ff7a7a] to-[#e0252e]",
 ];
 
 const containerVariants: any = {
@@ -141,15 +141,15 @@ export default function PopularCategory() {
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div
-          className="absolute top-20 left-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-[#1a2e6c]/10 rounded-full blur-3xl opacity-60"
         />
 
         <div
-          className="absolute bottom-10 right-20 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl"
+          className="absolute bottom-10 right-20 w-96 h-96 bg-[#c0202a]/10 rounded-full blur-3xl opacity-60"
         />
 
         <div
-          className="absolute top-1/2 left-1/2 w-72 h-72 bg-pink-400/10 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 w-72 h-72 bg-[#1a2e6c]/5 rounded-full blur-3xl opacity-70"
         />
       </div>
 
@@ -238,11 +238,11 @@ export default function PopularCategory() {
                 >
                   {/* Glow */}
                   <div
-                    className={`absolute -inset-1 rounded-3xl bg-linear-to-r ${gradient} opacity-0 blur-lg group-hover:opacity-40 transition-all duration-700`}
+                    className={`absolute -inset-1 rounded-[36px] bg-linear-to-r ${gradient} opacity-0 blur-lg group-hover:opacity-30 transition-all duration-700`}
                   />
 
                   {/* Card */}
-                  <div className="relative h-full min-h-[190px] rounded-[24px] bg-white flex flex-col items-center p-5 border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden cursor-pointer">
+                  <div className="relative h-full min-h-[190px] rounded-[32px] bg-white flex flex-col items-center p-5 border border-slate-100 shadow-[0_8px_30px_rgba(26,46,108,0.06)] hover:shadow-[0_15px_40px_rgba(26,46,108,0.12)] transition-all duration-300 overflow-hidden cursor-pointer">
                     
                     {/* Shine */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none">
@@ -255,8 +255,8 @@ export default function PopularCategory() {
                       <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 w-10 h-10 bg-linear-to-br ${gradient} blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500`} />
                       
                       {/* Icon container */}
-                      <div className={`relative w-14 h-14 rounded-[18px] bg-linear-to-br ${gradient} flex items-center justify-center`}>
-                        <Icon className="w-6 h-6 text-white group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" strokeWidth={2.5} />
+                      <div className={`relative w-16 h-16 rounded-[24px] bg-linear-to-br ${gradient} flex items-center justify-center`}>
+                        <Icon className="w-7 h-7 text-white group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" strokeWidth={2.5} />
                       </div>
                     </div>
 

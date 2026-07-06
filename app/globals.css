@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────
+   DISHA ONLINE CLASSES — LOGO BRAND THEME
+   Primary palette extracted from logo:
+     Navy Blue  : #1a2e6c  (deep navy, logo circle background)
+     Red        : #c0202a  (logo border ring)
+     White      : #ffffff  (primary / text)
+   ────────────────────────────────────────────────────────────────── */
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Brand Navy (primary) ── */
+  --color-brand-50: #eef1fa;
+  --color-brand-100: #d5dcf3;
+  --color-brand-200: #a9b6e5;
+  --color-brand-300: #7b8fd6;
+  --color-brand-400: #4f68c7;
+  --color-brand-500: #2f4fb8;
+  --color-brand-600: #1e3a96;
+  --color-brand-700: #1a2e6c; /* logo navy */
+  --color-brand-800: #142255;
+  --color-brand-900: #0d163a;
+  --color-brand-950: #070c1e;
+
+  /* ── Brand Red (accent) ── */
+  --color-disha-red-50: #fff0f0;
+  --color-disha-red-100: #ffd7d7;
+  --color-disha-red-200: #ffaaaa;
+  --color-disha-red-300: #ff7a7a;
+  --color-disha-red-400: #f44a4a;
+  --color-disha-red-500: #e0252e;
+  --color-disha-red-600: #c0202a; /* logo red ring */
+  --color-disha-red-700: #9a181f;
+  --color-disha-red-800: #751217;
+  --color-disha-red-900: #520d10;
+
+  /* ── Legacy aliases (keep existing gradient code working) ── */
+  --color-primary-50: #eef1fa;
+  --color-primary-100: #d5dcf3;
+  --color-primary-200: #a9b6e5;
+  --color-primary-300: #7b8fd6;
+  --color-primary-400: #4f68c7;
+  --color-primary-500: #2f4fb8;
+  --color-primary-600: #1e3a96;
+  --color-primary-700: #1a2e6c;
+  --color-primary-800: #142255;
+  --color-primary-900: #0d163a;
+  --color-primary-950: #070c1e;
+
+  --color-accent-300: #ff9a9a;
+  --color-accent-400: #f44a4a;
+  --color-accent-500: #c0202a;
+
+  /* ── Surface tokens (light) ── */
+  --color-surface-950: #070c1e;
+  --color-surface-900: #0d163a;
+  --color-surface-800: #142255;
+  --color-surface-700: #1a2e6c;
+
+  /* ── Animations ── */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-gradient-x: gradient-x 15s ease infinite;
+  --animate-slide-up: slide-up 0.6s ease-out;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes gradient-x {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   DESIGN TOKENS (light mode only — dark mode removed)
+   ────────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg-page: #ffffff;
+  --bg-section: #f5f7ff;
+  --bg-card: #ffffff;
+  --text-primary: #0d163a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: rgba(26, 46, 108, 0.12);
+  --disha-navy-text: #1a2e6c;
+  --disha-badge-bg: rgba(26, 46, 108, 0.08);
+  --disha-badge-border: rgba(26, 46, 108, 0.18);
+}
+
+/* Apply root tokens to body */
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SCROLLBAR
+   ────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-section);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1a2e6c, #c0202a);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2f4fb8, #e0252e);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   MARQUEE
+   ────────────────────────────────────────────────────────────────── */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   FLOATING ANIMATION
+   ────────────────────────────────────────────────────────────────── */
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating {
+  animation: floating 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   NAVBAR LINK HOVER — replaces JS onMouseEnter/onMouseLeave
+   ────────────────────────────────────────────────────────────────── */
+.nav-link:hover {
+  color: var(--text-primary) !important;
+  background-color: rgba(26, 46, 108, 0.06);
+}

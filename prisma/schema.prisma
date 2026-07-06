@@ -1,0 +1,184 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model admins {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique(map: "email") @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+}
+
+model ask_doubts {
+  id          Int      @id @default(autoincrement())
+  full_name   String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  phone       String   @db.VarChar(50)
+  category    String   @db.VarChar(100)
+  description String   @db.Text
+  reference   String?  @db.VarChar(255)
+  status      String   @default("Pending") @db.VarChar(50)
+  created_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model banners {
+  id            Int      @id @default(autoincrement())
+  image_url     String   @db.VarChar(255)
+  is_active     Boolean  @default(true)
+  display_order Int      @default(0)
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+}
+
+model blogs {
+  id            Int       @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  hindi_title   String?   @db.VarChar(255)
+  category      String    @db.VarChar(100)
+  image         String    @db.VarChar(255)
+  content       String    @db.LongText
+  hindi_content String?   @db.LongText
+  created_at    DateTime  @default(now()) @db.Timestamp(0)
+}
+
+
+
+
+
+model Quiz {
+  id            Int            @id @default(autoincrement())
+  title         String
+  className     String
+  subject       Subject
+  topicName     String
+  description   String         @db.Text
+  difficulty    String
+  estimatedTime Int
+  isPublished   Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  questions     QuizQuestion[]
+  results       QuizResult[]
+}
+
+model QuizQuestion {
+  id            Int      @id @default(autoincrement())
+  quizId        Int
+  question      String   @db.Text
+  optionA       String   @db.Text
+  optionB       String   @db.Text
+  optionC       String   @db.Text
+  optionD       String   @db.Text
+  correctAnswer String
+  explanation   String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([quizId], map: "QuizQuestion_quizId_fkey")
+}
+
+model QuizResult {
+  id             Int      @id @default(autoincrement())
+  quizId         Int
+  userId         String?
+  score          Int
+  totalQuestions Int
+  correctAnswers Int
+  wrongAnswers   Int
+  percentage     Float
+  createdAt      DateTime @default(now())
+  quiz           Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([quizId], map: "QuizResult_quizId_fkey")
+}
+
+
+
+model FreeCourse {
+  id           Int                 @id @default(autoincrement())
+  name         String
+  slug         String              @unique
+  thumbnail    String?
+  description  String              @db.Text
+  featured     Boolean             @default(false)
+  status       String              @default("Draft")
+  displayOrder Int                 @default(0)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  chapters     FreeCourseChapter[]
+  subjects     FreeCourseSubject[]
+}
+
+model FreeCourseSubject {
+  id           Int                 @id @default(autoincrement())
+  courseId     Int
+  name         String
+  slug         String              @unique
+  displayOrder Int                 @default(0)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  chapters     FreeCourseChapter[]
+  course       FreeCourse          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+}
+
+model FreeCourseChapter {
+  id           Int                 @id @default(autoincrement())
+  courseId     Int
+  subjectId    Int
+  name         String
+  slug         String              @unique
+  displayOrder Int                 @default(0)
+  status       String              @default("Draft")
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  course       FreeCourse          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  subject      FreeCourseSubject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  lectures     FreeCourseLecture[]
+
+  @@index([courseId])
+  @@index([subjectId])
+}
+
+model FreeCourseLecture {
+  id           Int               @id @default(autoincrement())
+  chapterId    Int
+  name         String
+  slug         String            @unique
+  youtubeUrl   String?
+  thumbnail    String?
+  content      String?           @db.LongText
+  displayOrder Int               @default(0)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  chapter      FreeCourseChapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@index([chapterId])
+}
+
+model VisitorAnalytics {
+  id           Int      @id @default(autoincrement())
+  sessionId    String   @unique @db.VarChar(255)
+  country      String   @db.VarChar(100)
+  state        String   @db.VarChar(100)
+  city         String   @db.VarChar(100)
+  createdAt    DateTime @default(now())
+  lastActivity DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([lastActivity])
+}
+
+enum Subject {
+  HISTORY
+  GEOGRAPHY
+  POLITICAL_SCIENCE
+  ECONOMICS
+  SOCIOLOGY
+}

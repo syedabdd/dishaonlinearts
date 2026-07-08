@@ -8,30 +8,10 @@ import { stats } from "../../data/siteData";
 
 // ─── Gradient & Icon Config ───────────────────────────────────────────────────
 const gradients = [
-  {
-    from: "#1a2e6c",
-    to: "#2f4fb8",
-    glow: "rgba(26,46,108,0.18)",
-    border: "rgba(26,46,108,0.25)",
-  },
-  {
-    from: "#c0202a",
-    to: "#e0252e",
-    glow: "rgba(192,32,42,0.18)",
-    border: "rgba(192,32,42,0.25)",
-  },
-  {
-    from: "#1e3a96",
-    to: "#c0202a",
-    glow: "rgba(30,58,150,0.18)",
-    border: "rgba(30,58,150,0.25)",
-  },
-  {
-    from: "#2f4fb8",
-    to: "#1a2e6c",
-    glow: "rgba(47,79,184,0.18)",
-    border: "rgba(47,79,184,0.25)",
-  },
+  { from: "#1a2e6c", to: "#2f4fb8", glow: "rgba(26,46,108,0.20)", border: "rgba(26,46,108,0.25)" },
+  { from: "#c0202a", to: "#e0252e", glow: "rgba(192,32,42,0.20)", border: "rgba(192,32,42,0.25)" },
+  { from: "#1e3a96", to: "#c0202a", glow: "rgba(30,58,150,0.20)", border: "rgba(30,58,150,0.25)" },
+  { from: "#2f4fb8", to: "#1a2e6c", glow: "rgba(47,79,184,0.20)", border: "rgba(47,79,184,0.25)" },
 ];
 
 const iconMap: Record<string, ReactNode> = {
@@ -71,126 +51,135 @@ function AnimatedCounter({ end, suffix }: { end: number; suffix?: string }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function TrustStats() {
   return (
-    // Negative margin pulls it UP to overlap into Hero2's bottom
-    <section className="relative z-30 -mt-10 px-4  sm:px-6 lg:px-8 pb-8">
+    <section className="relative z-30 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        {/* ── Glassmorphism Card Container ── */}
+
+        {/* Section label */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center text-xs mb-8 tracking-widest uppercase font-bold"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Our Impact in Numbers
+        </motion.p>
+
+        {/* ── Stats as horizontal banner with artistic accents ── */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="relative rounded-3xl overflow-hidden"
+          className="relative"
         >
           {/* Outer glow */}
-          <div className="absolute -inset-1 rounded-3xl blur-xl" style={{ background: "linear-gradient(90deg, rgba(26,46,108,0.20), rgba(192,32,42,0.10), rgba(26,46,108,0.20))" }} />
+          <div
+            className="absolute -inset-1 rounded-3xl blur-xl"
+            style={{ background: "linear-gradient(90deg, rgba(26,46,108,0.15), rgba(192,32,42,0.08), rgba(26,46,108,0.15))" }}
+          />
 
           {/* Glass panel */}
-          <div className="relative backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.08)]" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border-color)" }}>
-            {/* Top shimmer line */}
-            <div className="absolute top-0 left-8 right-8 h-px bg-linear-to-r from-transparent via-white to-transparent" />
+          <div
+            className="relative backdrop-blur-2xl rounded-3xl shadow-lg overflow-hidden"
+            style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border-color)" }}
+          >
+            {/* Diagonal artistic stripe overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-[0.02]"
+              style={{
+                backgroundImage: "repeating-linear-gradient(-55deg, #1a2e6c, #1a2e6c 1px, transparent 1px, transparent 24px)",
+              }}
+            />
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, i) => {
                 const g = gradients[i];
-                const isLast = i === stats.length - 1;
+                const isLastCol = (i + 1) % 2 === 0;
+                const isLastRow = i >= 2;
 
                 return (
                   <motion.div
                     key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                    whileHover={{ y: -3 }}
-                    className={`group relative flex flex-col items-center justify-center gap-3 px-6 py-7 md:py-9 transition-all duration-300 cursor-default
-                      ${!isLast ? "border-r border-b lg:border-b-0 border-slate-200/70" : "border-b lg:border-b-0 border-slate-200/70"}
-                      ${i >= 2 ? "border-b-0" : ""}
-                    `}
+                    transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
+                    whileHover={{ y: -4 }}
+                    className="group relative flex flex-col items-center justify-center gap-4 px-6 py-8 md:py-10 transition-all duration-300 cursor-default border-r border-b lg:border-b-0 border-slate-200/60 last:border-r-0"
+                    style={{
+                      borderRight: isLastCol ? "none" : undefined,
+                      borderBottom: isLastRow ? "none" : undefined,
+                    }}
                   >
-                    {/* Hover glow */}
+                    {/* Hover background */}
                     <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-none"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                       style={{
-                        background: `radial-gradient(circle at 50% 100%, ${g.glow}, transparent 70%)`,
+                        background: `radial-gradient(ellipse at 50% 110%, ${g.glow}, transparent 65%)`,
                       }}
                     />
 
-                    {/* Icon */}
-                    <motion.div
-                      whileHover={{ scale: 1.12, rotate: 5 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 15,
-                      }}
-                      className="relative z-10 flex items-center justify-center w-11 h-11 rounded-2xl shadow-lg"
+                    {/* Number with gradient */}
+                    <div
+                      className="text-4xl md:text-5xl font-black tracking-tight leading-none relative z-10"
                       style={{
                         background: `linear-gradient(135deg, ${g.from}, ${g.to})`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
                       }}
                     >
-                      {/* Icon glow */}
-                      <div
-                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-80 blur-md transition-opacity duration-300"
-                        style={{
-                          background: `linear-gradient(135deg, ${g.from}, ${g.to})`,
-                        }}
-                      />
-                      <span className="relative z-10">
-                        {iconMap[stat.icon]}
-                      </span>
-                    </motion.div>
+                      <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                    </div>
 
-                    {/* Number */}
-                    <div className="relative z-10 text-center">
-                      <div
-                        className="text-3xl md:text-4xl font-black tracking-tight leading-none"
-                        style={{
-                          background: `linear-gradient(135deg, ${g.from}, ${g.to})`,
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundClip: "text",
-                        }}
+                    {/* Icon + Label */}
+                    <div className="relative z-10 flex flex-col items-center gap-2">
+                      <motion.div
+                        whileHover={{ scale: 1.15, rotate: 8 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        className="flex items-center justify-center w-10 h-10 rounded-xl shadow-md"
+                        style={{ background: `linear-gradient(135deg, ${g.from}, ${g.to})` }}
                       >
-                        <AnimatedCounter
-                          end={stat.value}
-                          suffix={stat.suffix}
+                        {/* Icon glow */}
+                        <div
+                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-60 blur-sm transition-opacity duration-300"
+                          style={{ background: `linear-gradient(135deg, ${g.from}, ${g.to})` }}
                         />
-                      </div>
+                        <span className="relative z-10">{iconMap[stat.icon]}</span>
+                      </motion.div>
 
-                      <div className="mt-1.5 text-xs md:text-sm font-semibold tracking-wide" style={{ color: "var(--text-muted)" }}>
+                      <div
+                        className="text-xs md:text-sm font-semibold tracking-wide text-center"
+                        style={{ color: "var(--text-muted)" }}
+                      >
                         {stat.label}
                       </div>
                     </div>
 
-                    {/* Bottom accent bar */}
+                    {/* Bottom accent */}
                     <div
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 group-hover:w-12 rounded-full transition-all duration-400"
-                      style={{
-                        background: `linear-gradient(to right, ${g.from}, ${g.to})`,
-                      }}
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] w-0 group-hover:w-14 rounded-full transition-all duration-500"
+                      style={{ background: `linear-gradient(to right, ${g.from}, ${g.to})` }}
                     />
                   </motion.div>
                 );
               })}
             </div>
-
-            {/* Bottom shimmer line */}
-            <div className="absolute bottom-0 left-8 right-8 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent" />
           </div>
         </motion.div>
 
-        {/* ── Subtle label below ── */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-center text-xs mt-4 tracking-widest uppercase font-medium"
+          className="text-center text-xs mt-5 tracking-widest uppercase font-medium"
           style={{ color: "var(--text-muted)" }}
         >
-          Trusted by students across Bihar & Jharkhand
+          Trusted by students across Bihar &amp; Jharkhand
         </motion.p>
       </div>
     </section>

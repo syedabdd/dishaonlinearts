@@ -126,191 +126,230 @@ export default function AskDoubt() {
         )}
       </AnimatePresence>
 
-      <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: -25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 text-5xl font-black tracking-tight text-slate-900 md:text-6xl"
-          >
-            Solve Your Doubts Instantly
-          </motion.h1>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
+          
+          {/* Left Side: Text and Form */}
+          <div className="order-2 lg:order-1">
+            <div className="mb-8">
+              <motion.h1
+                initial={{ opacity: 0, y: -25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+              >
+                Solve Your Doubts Instantly
+              </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            className="mx-auto max-w-2xl text-lg text-slate-600"
-          >
-            Get verified solutions from Disha's top-tier arts experts with
-            detailed explanations and personalized guidance.
-          </motion.p>
-        </div>
-
-        {/* Form Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="rounded-[32px] border border-white/40 bg-white/80 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"
-        >
-          <motion.form
-            variants={containerVariants as any}
-            initial="hidden"
-            animate="visible"
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
-            {/* Full Name */}
-            <motion.div variants={itemVariants as any}>
-              <label className="mb-2 block text-sm font-bold text-slate-700">
-                Full Name
-              </label>
-
-              <input
-                type="text"
-                name="fullName"
-                required
-                value={formData.fullName}
-                onChange={handleChange}
-                placeholder="Enter your full name"
-                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 placeholder:text-slate-400 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-200"
-              />
-            </motion.div>
-
-            {/* Email + Phone */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <motion.div variants={itemVariants as any}>
-                <label className="mb-2 block text-sm font-bold text-slate-700">
-                  Email Address
-                </label>
-
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="name@example.com"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-200"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants as any}>
-                <label className="mb-2 block text-sm font-bold text-slate-700">
-                  Phone Number
-                </label>
-
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+91 XXXXX XXXXX"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-200"
-                />
-              </motion.div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.15 }}
+                className="text-lg text-slate-600"
+              >
+                Get verified solutions from Disha's top-tier arts experts with
+                detailed explanations and personalized guidance.
+              </motion.p>
             </div>
 
-            {/* Category */}
-            <motion.div variants={itemVariants as any}>
-              <label className="mb-2 block text-sm font-bold text-slate-700">
-                Doubt Category
-              </label>
-
-              <select
-                name="category"
-                required
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-200"
-              >
-                <option value="">Select category</option>
-                <option value="History">History</option>
-                <option value="Geography">Geography</option>
-                <option value="Political Science">Political Science</option>
-              </select>
-            </motion.div>
-
-            {/* Description */}
-            <motion.div variants={itemVariants as any}>
-              <label className="mb-2 block text-sm font-bold text-slate-700">
-                Doubt Description
-              </label>
-
-              <textarea
-                name="description"
-                rows={5}
-                required
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Explain your doubt in detail..."
-                className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 placeholder:text-slate-400 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-200"
-              />
-            </motion.div>
-
-            {/* Upload Section */}
             <motion.div
-              variants={itemVariants as any}
-              whileHover={{
-                scale: 1.01,
-              }}
-              className="rounded-2xl border-2 border-dashed border-indigo-200 bg-linear-to-br from-white to-indigo-50 p-6 transition-all duration-300 hover:border-indigo-500 hover:shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-[32px] border border-white/60 bg-white/70 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.05)] backdrop-blur-xl sm:p-8"
             >
-              <input
-                type="file"
-                id="file-upload"
-                className="hidden"
-                accept=".jpg,.jpeg,.png,.pdf"
-                onChange={handleFileChange}
-              />
+              <motion.form
+                variants={containerVariants as any}
+                initial="hidden"
+                animate="visible"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* Full Name */}
+                <motion.div variants={itemVariants as any}>
+                  <label className="mb-2 block text-sm font-bold text-slate-700">
+                    Full Name
+                  </label>
 
-              <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
-                <motion.label
-                  htmlFor="file-upload"
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className="flex cursor-pointer items-center gap-2 rounded-xl bg-indigo-100 px-5 py-3 font-semibold text-indigo-700 transition-colors hover:bg-indigo-200"
+                  <input
+                    type="text"
+                    name="fullName"
+                    required
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    placeholder="Enter your full name"
+                    className="w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-700 outline-none transition-all duration-300 placeholder:text-slate-400 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-200"
+                  />
+                </motion.div>
+
+                {/* Email + Phone */}
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <motion.div variants={itemVariants as any}>
+                    <label className="mb-2 block text-sm font-bold text-slate-700">
+                      Email Address
+                    </label>
+
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="name@example.com"
+                      className="w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-200"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants as any}>
+                    <label className="mb-2 block text-sm font-bold text-slate-700">
+                      Phone Number
+                    </label>
+
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+91 XXXXX XXXXX"
+                      className="w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-200"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Category */}
+                <motion.div variants={itemVariants as any}>
+                  <label className="mb-2 block text-sm font-bold text-slate-700">
+                    Doubt Category
+                  </label>
+
+                  <select
+                    name="category"
+                    required
+                    value={formData.category}
+                    onChange={handleChange}
+                    className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-700 outline-none transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-200"
+                  >
+                    <option value="">Select category</option>
+                    <option value="History">History</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Political Science">Political Science</option>
+                  </select>
+                </motion.div>
+
+                {/* Description */}
+                <motion.div variants={itemVariants as any}>
+                  <label className="mb-2 block text-sm font-bold text-slate-700">
+                    Doubt Description
+                  </label>
+
+                  <textarea
+                    name="description"
+                    rows={4}
+                    required
+                    value={formData.description}
+                    onChange={handleChange}
+                    placeholder="Explain your doubt in detail..."
+                    className="w-full resize-none rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-700 outline-none transition-all duration-300 placeholder:text-slate-400 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-200"
+                  />
+                </motion.div>
+
+                {/* Upload Section */}
+                <motion.div
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.01 }}
+                  className="rounded-2xl border-2 border-dashed border-indigo-300/50 bg-indigo-50/50 p-6 transition-all duration-300 hover:border-indigo-500 hover:bg-indigo-50 hover:shadow-xl"
                 >
-                  <Paperclip size={18} />
-                  Upload Reference
-                </motion.label>
+                  <input
+                    type="file"
+                    id="file-upload"
+                    className="hidden"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                    onChange={handleFileChange}
+                  />
 
-                <span className="text-sm font-medium text-slate-500">
-                  {fileName || "No file selected (JPG, PNG, PDF)"}
-                </span>
-              </div>
+                  <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <motion.label
+                      htmlFor="file-upload"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex cursor-pointer items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-indigo-700 shadow-sm transition-colors hover:bg-indigo-100 hover:shadow-md"
+                    >
+                      <Paperclip size={18} />
+                      Upload Reference
+                    </motion.label>
+
+                    <span className="text-sm font-medium text-slate-500">
+                      {fileName || "No file selected (JPG, PNG, PDF)"}
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Submit */}
+                <motion.button
+                  variants={itemVariants as any}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group relative flex w-full cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-2xl bg-linear-to-r from-indigo-600 via-purple-600 to-indigo-700 py-4 font-bold text-white shadow-xl transition-all duration-300 hover:shadow-indigo-500/30 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+                  <Sparkles size={18} />
+                  {isSubmitting ? "Sending..." : "Send to Experts"}
+                  <Send size={18} />
+                </motion.button>
+              </motion.form>
             </motion.div>
+          </div>
 
-            {/* Submit */}
-            <motion.button
-              variants={itemVariants as any}
-              whileHover={{
-                scale: 1.03,
-                y: -2,
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
-              type="submit"
-              disabled={isSubmitting}
-              className="group relative cursor-pointer flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-linear-to-r from-indigo-600 via-purple-600 to-indigo-700 py-4 font-bold text-white shadow-xl transition-all duration-300 hover:shadow-purple-300/40 disabled:opacity-70 disabled:cursor-not-allowed"
+          {/* Right Side: Animated Image */}
+          <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+              className="relative h-[400px] w-[400px] sm:h-[500px] sm:w-[500px] lg:h-[600px] lg:w-[600px]"
             >
-              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-              <Sparkles size={18} />
-              {isSubmitting ? "Sending..." : "Send to Experts"}
-              <Send size={18} />
-            </motion.button>
-          </motion.form>
-        </motion.div>
+              {/* Decorative elements behind image */}
+              <div className="absolute inset-0 rounded-full bg-linear-to-tr from-indigo-200 to-purple-200 blur-3xl opacity-40 animate-pulse" />
+              
+              <motion.img
+                src="https://illustrations.popsy.co/amber/question-mark.svg"
+                alt="Student asking a doubt"
+                className="relative z-10 h-full w-full object-contain"
+                animate={{
+                  y: [-15, 15, -15],
+                  rotate: [-2, 2, -2],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              
+              {/* Floating little question marks or sparkles */}
+              <motion.div
+                className="absolute top-[10%] right-[10%] z-20 text-indigo-500"
+                animate={{ y: [-10, 10, -10], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <Sparkles size={32} />
+              </motion.div>
+              <motion.div
+                className="absolute bottom-[20%] left-[5%] z-20 text-purple-500"
+                animate={{ y: [10, -10, 10], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <Sparkles size={24} />
+              </motion.div>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
 }
+

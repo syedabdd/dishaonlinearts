@@ -53,12 +53,7 @@ export default function TrendingCourses() {
       className="relative py-20 overflow-hidden"
       style={{ backgroundColor: "var(--bg-section)" }}
     >
-      {/* Artistic wavy top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
-        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" className="w-full h-10" fill="var(--bg-page)">
-          <path d="M0,20 C480,40 960,0 1440,20 L1440,0 L0,0 Z" />
-        </svg>
-      </div>
+
 
       {/* Background dots */}
       <div className="absolute inset-0 pointer-events-none">
@@ -205,12 +200,7 @@ export default function TrendingCourses() {
         </Swiper>
       </div>
 
-      {/* Artistic wavy bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
-        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" className="w-full h-10" fill="var(--bg-page)">
-          <path d="M0,20 C480,0 960,40 1440,20 L1440,40 L0,40 Z" />
-        </svg>
-      </div>
+
     </section>
   );
 }

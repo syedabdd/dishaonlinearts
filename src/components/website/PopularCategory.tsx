@@ -234,7 +234,7 @@ export default function PopularCategory() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4"
+          className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-5"
         >
           {categories.map((category) => {
             const Icon = category.icon;
@@ -253,29 +253,24 @@ export default function PopularCategory() {
                   className="group relative"
                 >
                   {/* Card */}
-                  <div className="relative rounded-2xl bg-white flex flex-col items-center p-4 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer min-h-[150px] sm:min-h-[170px]">
+                  <div className="relative rounded-2xl bg-white flex flex-col items-center justify-center p-4 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer min-h-[120px] sm:min-h-[160px]">
 
                     {/* Top right accent corner */}
                     <div
-                      className="absolute top-0 right-0 w-12 h-12 rounded-bl-2xl opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                      className="absolute top-0 right-0 w-16 h-16 rounded-bl-3xl opacity-5 group-hover:opacity-10 transition-opacity duration-500"
                       style={{ background: `linear-gradient(135deg, ${accent.from}, ${accent.to})` }}
                     />
 
-                    {/* Emoji */}
-                    <div className="text-2xl sm:text-3xl mt-3 mb-3 group-hover:scale-110 transition-transform duration-300">
-                      {category.emoji}
-                    </div>
-
                     {/* Icon badge */}
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 shadow-md"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300"
                       style={{ background: `linear-gradient(135deg, ${accent.from}, ${accent.to})` }}
                     >
-                      <Icon className="w-5 h-5 text-white" strokeWidth={2} />
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2} />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-center leading-tight px-1"
+                    <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-center leading-tight px-1 group-hover:text-[#c0202a] transition-colors duration-300"
                       style={{ color: "var(--disha-navy-text)" }}
                     >
                       {category.title}

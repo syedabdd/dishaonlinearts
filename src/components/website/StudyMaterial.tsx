@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen,
   BookText,
@@ -17,6 +17,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+const categories = ["All", "Books & Notes", "Practice & Tests", "Classes & Support"];
+
 const materials = [
   {
     title: "Class Syllabus",
@@ -24,6 +26,7 @@ const materials = [
     icon: BookOpen,
     color: "from-[#1a2e6c] to-[#2f4fb8]",
     link: "https://dishaonlineclasses.com/study-materials.php",
+    category: "Books & Notes",
   },
   {
     title: "NCERT Digital Books",
@@ -31,6 +34,7 @@ const materials = [
     icon: BookText,
     color: "from-[#c0202a] to-[#f44a4a]",
     link: "https://dishacompetitiveclasses.com/study-materials.php",
+    category: "Books & Notes",
   },
   {
     title: "PYQ & Model Papers",
@@ -38,6 +42,7 @@ const materials = [
     icon: Files,
     color: "from-[#1e3a96] to-[#4f68c7]",
     link: "https://dishaonlineclasses.com/study-materials.php?search=&class=all&stream=all&subject=all&exam=ncert-book&type=all",
+    category: "Practice & Tests",
   },
   {
     title: "Premium Free Notes",
@@ -45,6 +50,7 @@ const materials = [
     icon: FileText,
     color: "from-[#c0202a] to-[#1a2e6c]",
     link: "https://dishaonlineclasses.com/study-materials.php?search=&class=all&stream=all&subject=all&exam=ncert-book&type=all",
+    category: "Books & Notes",
   },
   {
     title: "Daily Live Quiz",
@@ -52,6 +58,7 @@ const materials = [
     icon: HelpCircle,
     color: "from-[#1a2e6c] to-[#c0202a]",
     link: "https://dishaonlineclasses.com/quiz_home.php",
+    category: "Practice & Tests",
   },
   {
     title: "Live & VOD Classes",
@@ -59,6 +66,7 @@ const materials = [
     icon: Video,
     color: "from-[#2f4fb8] to-[#1a2e6c]",
     link: "https://play.google.com/store/apps/details?id=co.dishaonlineclasses&hl=en_IN",
+    category: "Classes & Support",
   },
   {
     title: "24/7 Doubt Resolution",
@@ -66,6 +74,7 @@ const materials = [
     icon: MessageCircle,
     color: "from-[#c0202a] to-[#e0252e]",
     link: "/ask-doubt",
+    category: "Classes & Support",
   },
   {
     title: "OMR Practice Sheets",
@@ -73,6 +82,7 @@ const materials = [
     icon: ListChecks,
     color: "from-[#1a2e6c] to-[#4f68c7]",
     link: "https://dishaonlineclasses.com/omr.php",
+    category: "Practice & Tests",
   },
   {
     title: "Spoken English Module",
@@ -80,6 +90,7 @@ const materials = [
     icon: Languages,
     color: "from-[#e0252e] to-[#c0202a]",
     link: "https://dishaonlineclasses.com/spoken-english.php",
+    category: "Classes & Support",
   },
   {
     title: "Topper's Answer Copies",
@@ -87,6 +98,7 @@ const materials = [
     icon: Medal,
     color: "from-[#1e3a96] to-[#2f4fb8]",
     link: "https://dishaonlineclasses.com/study-materials.php",
+    category: "Practice & Tests",
   },
 ];
 
@@ -147,6 +159,11 @@ function CardContent({ item }: any) {
 }
 
 export default function StudyMaterial() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredMaterials = materials.filter(
+    (item) => activeCategory === "All" || item.category === activeCategory
+  );
   return (
     <section
       className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
@@ -227,39 +244,60 @@ export default function StudyMaterial() {
           </motion.p>
         </div>
 
-        {/* Cards Grid — left-aligned icon layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5">
-          {materials.map((item, index) =>
-            item.link.startsWith("http") ? (
-              <motion.a
-                href={item.link}
-                key={index}
-                className="group relative"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-              >
-                <CardContent item={item} />
-              </motion.a>
-            ) : (
-              <motion.div
-                key={index}
-                className="group relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-              >
-                <Link href={item.link}>
-                  <CardContent item={item} />
-                </Link>
-              </motion.div>
-            )
-          )}
+        {/* Categories Navbar */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${
+                activeCategory === category
+                  ? "bg-gradient-to-r from-[#1a2e6c] to-[#c0202a] text-white shadow-lg scale-105"
+                  : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
+
+        {/* Cards Grid — left-aligned icon layout */}
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+          <AnimatePresence>
+            {filteredMaterials.map((item, index) =>
+              item.link.startsWith("http") ? (
+                <motion.a
+                  href={item.link}
+                  key={item.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <CardContent item={item} />
+                </motion.a>
+              ) : (
+                <motion.div
+                  key={item.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative"
+                >
+                  <Link href={item.link}>
+                    <CardContent item={item} />
+                  </Link>
+                </motion.div>
+              )
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

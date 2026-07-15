@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import {
-  PenLine, Send, List as ListIcon, Edit, Trash2, X, Plus
+  PenLine, Send, List as ListIcon, Edit, Trash2, X, Plus, ChevronLeft, ChevronRight
 } from "lucide-react";
 import { createBlog, getBlogs, deleteBlog, updateBlog } from "./actions";
 import dynamic from "next/dynamic";
@@ -32,6 +32,16 @@ export default function BlogDashboard() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
+
+  const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
+  const paginatedBlogs = blogs.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -301,7 +311,7 @@ export default function BlogDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {blogs.map((blog: any) => (
+                {paginatedBlogs.map((blog: any) => (
                   <tr key={blog.id} className={`hover:bg-slate-50/80 transition-colors ${editId === blog.id ? 'bg-indigo-50/30' : ''}`}>
                     <td className="py-3 px-4 w-24">
                       <div className="relative w-16 h-10 rounded overflow-hidden border border-slate-200 shadow-sm">
@@ -347,6 +357,31 @@ export default function BlogDashboard() {
                 ))}
               </tbody>
             </table>
+            
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="px-4 py-3 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-sm text-slate-500 font-medium text-center sm:text-left">
+                  Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to {Math.min(currentPage * ITEMS_PER_PAGE, blogs.length)} of {blogs.length} entries
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-600 font-medium text-sm hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Prev
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-600 font-medium text-sm hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Next <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

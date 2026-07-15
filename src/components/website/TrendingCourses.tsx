@@ -13,16 +13,16 @@ const courses = [
   {
     id: 1,
     image:
-      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1775887619_sci%20hin.png",
-    link: "https://dishaonlineclasses.com/course-details.php?id=36",
+      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1775280197_%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A4%E0%A4%A8_%E0%A4%AC%E0%A5%88%E0%A4%9A_arts_2027_Course_Poster_Hindi_Medium.png",
+    link: "https://dishaonlineclasses.com/course-details.php?id=33",
     badge: "NEW BATCH",
     badgeColor: "blue",
   },
   {
     id: 3,
     image:
-      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1775282090_11th%20sci%20english%20batch.png",
-    link: "https://dishaonlineclasses.com/course-details.php?id=35",
+      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1768807658_arts.png",
+    link: "https://dishaonlineclasses.com/course-details.php?id=27",
     badge: "NEW BATCH",
     badgeColor: "blue",
   },
@@ -53,8 +53,6 @@ export default function TrendingCourses() {
       className="relative py-20 overflow-hidden"
       style={{ backgroundColor: "var(--bg-section)" }}
     >
-
-
       {/* Background dots */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-16 right-8 w-64 h-64 bg-[#1a2e6c]/8 rounded-full blur-3xl" />
@@ -87,7 +85,8 @@ export default function TrendingCourses() {
               Top Arts{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+                  background:
+                    "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -98,8 +97,18 @@ export default function TrendingCourses() {
             </motion.h2>
 
             {/* Brushstroke underline */}
-            <svg viewBox="0 0 200 10" className="w-48 h-2.5 mt-3 mb-4" fill="none">
-              <path d="M5 5 Q50 2 100 5 Q150 8 195 5" stroke="url(#tcGrad)" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+            <svg
+              viewBox="0 0 200 10"
+              className="w-48 h-2.5 mt-3 mb-4"
+              fill="none"
+            >
+              <path
+                d="M5 5 Q50 2 100 5 Q150 8 195 5"
+                stroke="url(#tcGrad)"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                fill="none"
+              />
               <defs>
                 <linearGradient id="tcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#1a2e6c" />
@@ -116,7 +125,8 @@ export default function TrendingCourses() {
               className="text-base max-w-xl"
               style={{ color: "var(--text-secondary)" }}
             >
-              Unlock your potential with Bihar's top-rated Arts faculty and expertly crafted batch courses.
+              Unlock your potential with Bihar's top-rated Arts faculty and
+              expertly crafted batch courses.
             </motion.p>
           </div>
 
@@ -131,14 +141,18 @@ export default function TrendingCourses() {
                 color: "var(--text-primary)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, #1a2e6c, #c0202a)";
+                (e.currentTarget as HTMLElement).style.background =
+                  "linear-gradient(135deg, #1a2e6c, #c0202a)";
                 (e.currentTarget as HTMLElement).style.color = "white";
                 (e.currentTarget as HTMLElement).style.border = "none";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "var(--bg-card)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";
-                (e.currentTarget as HTMLElement).style.border = "1px solid var(--border-color)";
+                (e.currentTarget as HTMLElement).style.background =
+                  "var(--bg-card)";
+                (e.currentTarget as HTMLElement).style.color =
+                  "var(--text-primary)";
+                (e.currentTarget as HTMLElement).style.border =
+                  "1px solid var(--border-color)";
               }}
             >
               <ChevronLeft size={22} />
@@ -153,14 +167,18 @@ export default function TrendingCourses() {
                 color: "var(--text-primary)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, #1a2e6c, #c0202a)";
+                (e.currentTarget as HTMLElement).style.background =
+                  "linear-gradient(135deg, #1a2e6c, #c0202a)";
                 (e.currentTarget as HTMLElement).style.color = "white";
                 (e.currentTarget as HTMLElement).style.border = "none";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "var(--bg-card)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";
-                (e.currentTarget as HTMLElement).style.border = "1px solid var(--border-color)";
+                (e.currentTarget as HTMLElement).style.background =
+                  "var(--bg-card)";
+                (e.currentTarget as HTMLElement).style.color =
+                  "var(--text-primary)";
+                (e.currentTarget as HTMLElement).style.border =
+                  "1px solid var(--border-color)";
               }}
             >
               <ChevronRight size={22} />
@@ -199,8 +217,6 @@ export default function TrendingCourses() {
           ))}
         </Swiper>
       </div>
-
-
     </section>
   );
 }
@@ -216,7 +232,10 @@ function CourseCard({ course }: any) {
         <div className="absolute top-3 left-3 z-20">
           <div
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-xs font-bold shadow-lg backdrop-blur-md"
-            style={{ backgroundColor: course.badgeColor === "blue" ? "#1a2e6c" : "#c0202a" }}
+            style={{
+              backgroundColor:
+                course.badgeColor === "blue" ? "#1a2e6c" : "#c0202a",
+            }}
           >
             {course.badgeColor === "blue" ? (
               <Zap className="w-3 h-3 fill-current" />

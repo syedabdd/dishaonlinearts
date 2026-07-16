@@ -132,7 +132,7 @@ export default function BlogPost({
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.2] tracking-tight mb-8">
               {displayLanguage === "hi" && blog.hindi_title ? blog.hindi_title : blog.title}
             </h1>
 
@@ -156,12 +156,7 @@ export default function BlogPost({
                 })}
               </div>
 
-              <div className="h-4 w-px bg-slate-300 hidden sm:block" />
 
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-slate-400" />
-                {readTime} min read
-              </div>
 
               <button
                 onClick={handleShare}
@@ -175,18 +170,17 @@ export default function BlogPost({
 
           {/* Hero Image */}
           {blog.image && (
-            <div className="mb-12 lg:mb-20 max-w-6xl mx-auto rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] relative group">
-              <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <div className="mb-12 lg:mb-16 max-w-5xl mx-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-50">
               <img
                 src={blog.image}
                 alt={blog.title}
-                className="w-full h-auto max-h-[600px] object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
+                className="w-full h-auto max-h-[700px] object-contain"
               />
             </div>
           )}
 
           {/* Main Layout Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 items-start">
+          <div className="max-w-4xl mx-auto">
             
             {/* Left Side: Article Content */}
             <article className="bg-white rounded-[2rem] p-6 sm:p-10 lg:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 relative">
@@ -229,70 +223,6 @@ export default function BlogPost({
                 }}
               />
             </article>
-
-            {/* Right Side: Sidebar */}
-            <aside className="space-y-8 lg:sticky lg:top-32">
-              <div className="bg-white rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8">
-                <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-                  </span>
-                  Trending Reads
-                </h3>
-
-                <div className="flex flex-col gap-6">
-                  {trendingBlogs.length > 0 ? (
-                    trendingBlogs.map((item, idx) => (
-                      <Link
-                        key={item.id}
-                        href={`/blog/${item.slug}`}
-                        className="group flex gap-4 items-start"
-                      >
-                        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-slate-100 shadow-sm">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                        </div>
-
-                        <div className="flex flex-col justify-center">
-                          <h4 className="text-sm font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors">
-                            {item.title}
-                          </h4>
-                          <p className="text-xs font-medium text-slate-400 mt-2 flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5" />
-                            {new Date(item.created_at).toLocaleDateString("en-GB", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric"
-                            })}
-                          </p>
-                        </div>
-                      </Link>
-                    ))
-                  ) : (
-                    <div className="p-4 bg-slate-50 rounded-xl text-center">
-                      <p className="text-sm text-slate-500">No trending blogs at the moment.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-              {/* Optional: Add a call to action or newsletter signup in sidebar */}
-              <div className="bg-linear-to-br from-indigo-600 to-purple-700 rounded-[2rem] p-8 text-white shadow-xl text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl" />
-                <h3 className="font-bold text-2xl mb-3 relative z-10">Love our content?</h3>
-                <p className="text-indigo-100 text-sm mb-6 relative z-10">
-                  Stay updated with the latest articles and study materials from Disha Arts.
-                </p>
-                <Link href="/" className="inline-block w-full py-3 px-4 bg-white text-indigo-700 font-bold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all relative z-10">
-                  Explore Courses
-                </Link>
-              </div>
-
-            </aside>
           </div>
         </div>
       </main>

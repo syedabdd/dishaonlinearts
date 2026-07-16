@@ -56,7 +56,7 @@ export default function Blog() {
 
   return (
     <section className="min-h-screen bg-[#f4f6f9] pt-28 pb-24">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         
         {/* Search & Filter Container (Matches screenshot style) */}
         <div className="bg-white rounded-[2rem] p-4 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-8">
@@ -137,40 +137,40 @@ export default function Blog() {
                     <div className="group flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_24px_rgb(0,0,0,0.04)] hover:shadow-lg hover:border-slate-200 transition-all duration-300">
                       
                       {/* Left: Image Container */}
-                      <div className="relative w-full md:w-[350px] lg:w-[400px] h-[200px] md:h-auto shrink-0 bg-slate-100">
+                      <div className="relative w-full md:w-[280px] lg:w-[320px] h-[160px] md:h-[180px] lg:h-[200px] shrink-0 bg-slate-50 border-r border-slate-100 p-4 flex items-center justify-center">
                         <img
                           src={blog.image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643"}
                           alt={blog.title}
-                          className="absolute inset-0 w-full h-full object-cover"
+                          className="w-full h-full object-contain rounded-xl"
                         />
                       </div>
                       
                       {/* Right: Content Container */}
-                      <div className="flex flex-col flex-1 p-6 md:p-8">
+                      <div className="flex flex-col flex-1 p-4 md:p-5">
                         
                         {/* Category Badge */}
                         {blog.category && (
-                          <div className="mb-4">
-                            <span className="inline-block bg-indigo-50 text-indigo-600 text-xs font-bold px-3 py-1.5 rounded-full">
+                          <div className="mb-2">
+                            <span className="inline-block bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-full">
                               {blog.category}
                             </span>
                           </div>
                         )}
                         
                         {/* Title */}
-                        <h3 className="text-slate-900 text-xl md:text-[22px] font-bold leading-snug line-clamp-2 mb-3 group-hover:text-indigo-600 transition-colors">
+                        <h3 className="text-slate-900 text-lg md:text-[20px] font-bold leading-snug line-clamp-2 mb-2 group-hover:text-indigo-600 transition-colors">
                           {blog.title}
                         </h3>
                         
                         {/* Excerpt/Content Preview */}
-                        <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-2 mb-6">
-                          {blog.content ? blog.content.replace(/<[^>]+>/g, '').substring(0, 200) : "Read this article to learn more about the complete study plan and strategy for your upcoming examinations..."}
+                        <p className="text-slate-500 text-xs md:text-sm leading-relaxed line-clamp-2 mb-3">
+                          {blog.content ? blog.content.replace(/<[^>]+>/g, '').substring(0, 150) : "Read this article to learn more about the complete study plan and strategy for your upcoming examinations..."}
                         </p>
                         
                         {/* Footer: Date and Read More */}
-                        <div className="mt-auto flex items-center justify-between text-slate-400 text-sm font-medium pt-4 border-t border-slate-50">
+                        <div className="mt-auto flex items-center justify-between text-slate-400 text-xs font-medium pt-3 border-t border-slate-50">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4" />
+                            <Calendar className="w-3.5 h-3.5" />
                             <span>{blog.created_at ? new Date(blog.created_at).toLocaleDateString('en-GB') : "15/07/2026"}</span>
                           </div>
                           

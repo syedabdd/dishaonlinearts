@@ -170,11 +170,11 @@ export default function BlogPost({
 
           {/* Hero Image */}
           {blog.image && (
-            <div className="mb-12 lg:mb-16 max-w-5xl mx-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-50">
+            <div className="mb-12 lg:mb-16 max-w-4xl mx-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-50 p-2 sm:p-4">
               <img
                 src={blog.image}
                 alt={blog.title}
-                className="w-full h-auto max-h-[700px] object-contain"
+                className="w-full h-auto max-h-[500px] object-contain rounded-xl sm:rounded-2xl"
               />
             </div>
           )}

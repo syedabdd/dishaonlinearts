@@ -21,7 +21,7 @@ const courses = [
   {
     id: 3,
     image:
-      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1768807658_arts.png",
+      "https://dishaonlineclasses.com/admindp/admindp/uploads/courses/1768807658_arts.png ",
     link: "https://dishaonlineclasses.com/course-details.php?id=27",
     badge: "NEW BATCH",
     badgeColor: "blue",

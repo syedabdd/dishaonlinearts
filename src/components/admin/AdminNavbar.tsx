@@ -15,16 +15,19 @@ import {
   BarChart2,
   Menu,
   X,
+  Zap,
 } from "lucide-react";
 
 const menus = [
-  { name: "Dashboard",    href: "/admindp",              icon: LayoutDashboard },
-  { name: "Blog",         href: "/admindp/blog",         icon: BookOpen        },
-  { name: "Doubts",       href: "/admindp/ask-doubt",    icon: HelpCircle      },
-  { name: "Banners",      href: "/admindp/banners",      icon: ImageIcon       },
-  { name: "Free Courses", href: "/admindp/free-courses", icon: PlaySquare      },
-  { name: "Analytics",    href: "/admindp/analytics",    icon: BarChart2       },
+  { name: "Dashboard",      href: "/admindp",                    icon: LayoutDashboard },
+  { name: "Blog",           href: "/admindp/blog",               icon: BookOpen        },
+  { name: "QuickRevision",  href: "/admindp/quick-revision",     icon: Zap             },
+  { name: "Doubts",         href: "/admindp/ask-doubt",          icon: HelpCircle      },
+  { name: "Banners",        href: "/admindp/banners",            icon: ImageIcon       },
+  { name: "Free Courses",   href: "/admindp/free-courses",       icon: PlaySquare      },
+  { name: "Analytics",      href: "/admindp/analytics",          icon: BarChart2       },
 ];
+
 
 export default function AdminNavbar() {
   const pathname = usePathname();

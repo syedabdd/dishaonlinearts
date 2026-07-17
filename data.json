@@ -1,0 +1,24 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"items":[{"id":1,"title":"à¤ªà¥à¤°à¤¥à¤® à¤ªà¤¾à¤¨à¥à¤ªà¤¤ à¤à¤¾ à¤¯à¥à¤¦à¥à¤§ (1526) | 
+                    Quick Revision","slug":"-1526-quick-revision","subject":"HISTORY","chapter":"General","className":"
+                    12","bo...
+RawContent        : HTTP/1.1 200 OK
+                    vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+                    Connection: keep-alive
+                    Keep-Alive: timeout=5
+                    Transfer-Encoding: chunked
+                    Content-Type: applica...
+Forms             : {}
+Headers           : {[vary, rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch], 
+                    [Connection, keep-alive], [Keep-Alive, timeout=5], [Transfer-Encoding, chunked]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 577
+
+
+

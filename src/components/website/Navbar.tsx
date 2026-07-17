@@ -19,6 +19,7 @@ import { navLinks } from "../../data/siteData";
 
 // Defined outside component to prevent recreation on every render
 const moreLinks = [
+  { label: "QuickRevision", href: "/quick-revision", icon: Zap },
   { label: "Blog", href: "/blog", icon: Rss },
   {
     label: "Toppers",
@@ -36,6 +37,7 @@ const moreLinks = [
     icon: Users,
   },
 ];
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

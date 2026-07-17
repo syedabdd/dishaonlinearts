@@ -14,6 +14,7 @@ import {
   FolderOpen,
   FileVideo,
   BarChart2,
+  Zap,
 } from "lucide-react";
 
 export default function Sidebar({
@@ -49,6 +50,11 @@ export default function Sidebar({
       name: "Free Courses",
       href: "/admindp/free-courses",
       icon: PlaySquare,
+    },
+    {
+      name: "QuickRevision",
+      href: "/admindp/quick-revision",
+      icon: Zap,
     },
     {
       name: "Analytics",

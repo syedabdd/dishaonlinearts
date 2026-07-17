@@ -10,6 +10,7 @@ const Liveclasses = dynamic(() => import("@/components/website/Liveclasses"));
 const JoinOurYoutubeFam = dynamic(() => import("@/components/website/JoinOurYouubeFam"));
 const DigitalEcoSystem = dynamic(() => import("@/components/website/DigitalEcoSystem"));
 const Toppers = dynamic(() => import("@/components/website/Toppers"));
+const QuickRevisionSection = dynamic(() => import("@/components/website/QuickRevisionSection"));
 
 import { getActiveBanners } from "../(admin)/admindp/banners/actions";
 
@@ -24,6 +25,7 @@ export default async function HomePage() {
       <PopularCategory />
       <Liveclasses />
       <TrustStats />
+      <QuickRevisionSection />
       <TrendingCourses />
       <StudyMaterial />
       <DigitalEcoSystem />

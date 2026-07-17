@@ -181,4 +181,62 @@ enum Subject {
   POLITICAL_SCIENCE
   ECONOMICS
   SOCIOLOGY
+  HINDI
+  ENGLISH
+}
+
+model QuickRevision {
+  id              Int       @id @default(autoincrement())
+  title           String    @db.VarChar(500)
+  slug            String    @unique @db.VarChar(600)
+  subject         Subject
+  chapter         String    @db.VarChar(255)
+  className       String    @db.VarChar(10)
+  board           String    @default("All Boards") @db.VarChar(50)
+  examLevel       String    @default("Board Exam") @db.VarChar(50)
+
+  // Optional contextual fields
+  dateYear        String?   @db.VarChar(100)
+  place           String?   @db.VarChar(255)
+  people          String?   @db.Text
+
+  // Core content
+  reason          String    @db.Text
+  whatHappened    String    @db.Text
+  result          String    @db.Text
+  interestingFact String    @db.Text
+  examTrick       String    @db.Text
+
+  // Exam content
+  pyq             String?   @db.Text
+
+  // MCQs
+  mcqs            Json?
+
+  // SEO & Meta
+  keywords        String?   @db.Text
+  metaTitle       String?   @db.VarChar(255)
+  metaDescription String?   @db.VarChar(500)
+
+  // Media & Display
+  thumbnail       String?   @db.VarChar(255)
+  displayOrder    Int       @default(0)
+
+  // Flags
+  featured        Boolean   @default(false)
+  published       Boolean   @default(false)
+
+  // Stats
+  views           Int       @default(0)
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([subject])
+  @@index([className])
+  @@index([board])
+  @@index([published])
+  @@index([featured])
+  @@index([slug])
+  @@index([displayOrder])
 }

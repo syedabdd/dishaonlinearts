@@ -412,15 +412,7 @@ export default function CreateQuickRevisionPage() {
         {/* ── Section: Settings ── */}
         <FormSection title="Settings" icon="⚙️">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div>
-              <Label>Display Order</Label>
-              <input
-                name="displayOrder"
-                type="number"
-                defaultValue={0}
-                className={inputCls}
-              />
-            </div>
+
             <div className="flex items-center gap-3 pt-6">
               <input
                 type="checkbox"

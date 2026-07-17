@@ -376,10 +376,7 @@ export default function EditQuickRevisionPage() {
         {/* Settings */}
         <FormSection title="Settings" icon="⚙️">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div>
-              <Label>Display Order</Label>
-              <input name="displayOrder" type="number" defaultValue={data.displayOrder} className={inputCls} />
-            </div>
+
             <div className="flex items-center gap-3 pt-6">
               <input type="checkbox" id="featured" name="featured" defaultChecked={data.featured} className="w-4 h-4 rounded accent-purple-600" />
               <label htmlFor="featured" className="font-medium text-gray-700 text-sm">Featured</label>

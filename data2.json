@@ -1,0 +1,24 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"items":[{"id":2,"title":"à¤ªà¤¾à¤¨à¥à¤ªà¤¤ à¤à¥ à¤ªà¤¹à¤²à¥ à¤²à¤¡à¤¼à¤¾à¤ (First Battle of 
+                    Panipat)","slug":"-first-battle-of-panipat","subject":"HISTORY","chapter":"General","className":"11
+                    ",...
+RawContent        : HTTP/1.1 200 OK
+                    vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+                    Connection: keep-alive
+                    Keep-Alive: timeout=5
+                    Transfer-Encoding: chunked
+                    Content-Type: applica...
+Forms             : {}
+Headers           : {[vary, rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch], 
+                    [Connection, keep-alive], [Keep-Alive, timeout=5], [Transfer-Encoding, chunked]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 618
+
+
+

@@ -19,7 +19,7 @@ async function getData(slug: string) {
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL ||
       (process.env.NODE_ENV === "production"
-        ? "https://dishaonlineclasses.com"
+        ? "https://dishaartsclasses.com"
         : "http://localhost:3000");
     const res = await fetch(`${baseUrl}/api/quick-revision/${slug}`, {
       cache: "no-store",

@@ -19,7 +19,7 @@ import { navLinks } from "../../data/siteData";
 
 // Defined outside component to prevent recreation on every render
 const moreLinks = [
-  { label: "QuickRevision", href: "/quick-revision", icon: Zap },
+  { label: "Quick Revision", href: "/quick-revision", icon: Zap },
   { label: "Blog", href: "/blog", icon: Rss },
   {
     label: "Toppers",
@@ -205,26 +205,21 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Desktop CTA */}
-            <div
-              className="
-    hidden lg:flex items-center gap-3
-     bg-green-600 text-white hover:bg-green-700
-    shadow-[0px_8px_30px_rgba(26,46,108,0.4)]
-    p-2 rounded-2xl
-    transition-all duration-300
-  "
-            >
-              <a
-                href="tel:+917700879453"
-                className="flex items-center gap-2 text-sm font-medium"
-                style={{ color: "var(--text-secondary)" }}
+            {/* Desktop CTAs */}
+            <div className="hidden lg:flex items-center gap-3">
+              <div
+                className="flex items-center gap-3 bg-green-600 text-white hover:bg-green-700 shadow-[0px_8px_30px_rgba(26,46,108,0.4)] p-2 px-3 rounded-xl transition-all duration-300"
               >
-                <Phone className="text-white w-4 h-4" />
-                <span className="hidden text-white xl:inline">
-                  +91 7700879453
-                </span>
-              </a>
+                <a
+                  href="tel:+917700879453"
+                  className="flex items-center gap-2 text-sm font-bold text-white"
+                >
+                  <Phone className="text-white w-4 h-4" />
+                  <span className="hidden xl:inline">
+                    +91 7700879453
+                  </span>
+                </a>
+              </div>
             </div>
 
             {/* Mobile: hamburger button */}
@@ -399,12 +394,12 @@ export default function Navbar() {
 
           {/* Drawer Footer */}
           <div
-            className="p-6 text-white border-t space-y-3"
+            className="p-6 border-t space-y-3 bg-slate-50"
             style={{ borderColor: "var(--border-color)" }}
           >
             <a
               href="tel:+917700879453"
-              className="flex items-center justify-center gap-2 w-full py-3 text-sm font-medium rounded-xl transition-colors bg-green-600 text-white hover:bg-green-700 shadow-sm"
+              className="flex items-center justify-center gap-2 w-full py-3.5 text-sm font-bold rounded-xl transition-colors bg-green-600 text-white hover:bg-green-700 shadow-sm"
             >
               <Phone className="w-4 h-4 !text-white" />
               +91 7700879453

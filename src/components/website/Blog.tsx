@@ -4,31 +4,17 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Search, ArrowRight, Zap, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import { getBlogs } from "../../../app/(admin)/admindp/blog/actions";
 import Pagination from "./Pagination";
 
-export default function Blog() {
-  const [blogs, setBlogs] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function Blog({ initialBlogs = [] }: { initialBlogs?: any[] }) {
+  const [blogs, setBlogs] = useState<any[]>(initialBlogs);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Blogs");
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 10;
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const data = await getBlogs();
-        setBlogs(data);
-      } catch (error) {
-        console.error("Failed to fetch blogs", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchBlogs();
-  }, []);
 
   // Extract unique categories from blogs
   const categories = useMemo(() => {

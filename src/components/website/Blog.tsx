@@ -7,7 +7,7 @@ import Link from "next/link";
 import Pagination from "./Pagination";
 
 export default function Blog({ initialBlogs = [] }: { initialBlogs?: any[] }) {
-  const [blogs, setBlogs] = useState<any[]>(initialBlogs);
+  const blogs = initialBlogs;
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Blogs");

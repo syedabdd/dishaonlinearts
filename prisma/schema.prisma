@@ -191,7 +191,7 @@ model QuickRevision {
   slug            String    @unique @db.VarChar(600)
   subject         Subject
   chapter         String    @db.VarChar(255)
-  className       String    @db.VarChar(10)
+  className       String    @db.VarChar(50)
   board           String    @default("All Boards") @db.VarChar(50)
   examLevel       String    @default("Board Exam") @db.VarChar(50)
 

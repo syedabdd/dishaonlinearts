@@ -68,8 +68,11 @@ export default function QuickRevisionCard({ item, index = 0 }: QuickRevisionCard
 
             {/* Class badge */}
             <div className="absolute top-3 right-3">
-              <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-bold bg-[#1a2e6c] text-white shadow-sm">
-                Class {item.className}
+              <span 
+                className="inline-flex px-2.5 py-1 rounded-lg text-xs font-bold bg-[#1a2e6c] text-white shadow-sm max-w-[120px] truncate" 
+                title={`Class ${item.className}`}
+              >
+                {item.className === "11th & 12th both" ? "Class 11 & 12" : `Class ${item.className}`}
               </span>
             </div>
           </div>

@@ -175,6 +175,7 @@ export default function CreateQuickRevisionPage() {
                 <option value="">Select Class</option>
                 <option value="11">Class 11</option>
                 <option value="12">Class 12</option>
+                <option value="11th & 12th both">11th & 12th both</option>
               </select>
             </div>
           </div>

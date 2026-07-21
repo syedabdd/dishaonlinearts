@@ -27,14 +27,19 @@ export default function QuickRevisionSection() {
   function handleSearchSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (search.trim()) {
-      router.push(`/quick-revision?search=${encodeURIComponent(search.trim())}`);
+      router.push(
+        `/quick-revision?search=${encodeURIComponent(search.trim())}`,
+      );
     } else {
       router.push("/quick-revision");
     }
   }
 
   return (
-    <section className="relative py-20 overflow-hidden" style={{ backgroundColor: "var(--bg-page)" }}>
+    <section
+      className="relative py-20 overflow-hidden"
+      style={{ backgroundColor: "var(--bg-page)" }}
+    >
       {/* Decorative blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#1a2e6c]/5 blur-3xl -translate-y-1/2 translate-x-1/3" />
@@ -67,7 +72,8 @@ export default function QuickRevisionSection() {
               Revise in{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+                  background:
+                    "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -78,7 +84,11 @@ export default function QuickRevisionSection() {
             </motion.h2>
 
             {/* Brushstroke underline */}
-            <svg viewBox="0 0 200 10" className="w-48 h-2.5 mt-3 mb-4" fill="none">
+            <svg
+              viewBox="0 0 200 10"
+              className="w-48 h-2.5 mt-3 mb-4"
+              fill="none"
+            >
               <path
                 d="M5 5 Q50 2 100 5 Q150 8 195 5"
                 stroke="url(#qrGrad)"
@@ -115,11 +125,18 @@ export default function QuickRevisionSection() {
           >
             <Link
               href="/quick-revision"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#1a2e6c] to-[#1a2e6c]/80 text-white font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 group"
+              className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl !text-white font-bold shadow-xl hover:-translate-y-1 transition-all duration-300"
+              style={{
+                background: "linear-gradient(135deg, #1a2e6c 0%, #c0202a 100%)",
+                boxShadow: "0 8px 25px rgba(26,46,108,0.35)",
+              }}
             >
               <BookOpen size={17} />
               View All Topics
-              <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight
+                size={18}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </motion.div>
         </div>
@@ -145,7 +162,10 @@ export default function QuickRevisionSection() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="rounded-2xl bg-gray-100 h-72 animate-pulse" />
+              <div
+                key={i}
+                className="rounded-2xl bg-gray-100 h-72 animate-pulse"
+              />
             ))}
           </div>
         ) : items.length > 0 ? (

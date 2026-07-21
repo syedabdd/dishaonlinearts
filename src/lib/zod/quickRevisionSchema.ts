@@ -23,7 +23,7 @@ export const EXAM_LEVELS = [
   "Competitive",
 ] as const;
 
-export const CLASSES = ["11", "12"] as const;
+export const CLASSES = ["11", "12", "11th & 12th both"] as const;
 export const CORRECT_ANSWERS = ["A", "B", "C", "D"] as const;
 
 

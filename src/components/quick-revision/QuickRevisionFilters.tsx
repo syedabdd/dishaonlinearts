@@ -79,6 +79,7 @@ export default function QuickRevisionFilters({
             <option value="">All Classes</option>
             <option value="11">Class 11</option>
             <option value="12">Class 12</option>
+            <option value="11th & 12th both">11th & 12th both</option>
           </select>
         </div>
 

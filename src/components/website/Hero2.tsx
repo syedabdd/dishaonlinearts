@@ -272,10 +272,7 @@ export default function Hero2() {
               custom={4}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
-              <span
-                className="text-xs font-bold uppercase tracking-widest"
-                style={{ color: "var(--text-muted)" }}
-              >
+              <span className="text-xs font-bold uppercase tracking-widest text-black">
                 Connect:
               </span>
               <a

@@ -203,6 +203,7 @@ export default function EditQuickRevisionPage() {
               <select required name="className" defaultValue={data.className} className={selectCls}>
                 <option value="11">Class 11</option>
                 <option value="12">Class 12</option>
+                <option value="11th & 12th both">11th & 12th both</option>
               </select>
             </div>
           </div>

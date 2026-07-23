@@ -181,6 +181,7 @@ enum Subject {
   POLITICAL_SCIENCE
   ECONOMICS
   SOCIOLOGY
+  PSYCHOLOGY
   HINDI
   ENGLISH
 }
@@ -195,17 +196,20 @@ model QuickRevision {
   board           String    @default("All Boards") @db.VarChar(50)
   examLevel       String    @default("Board Exam") @db.VarChar(50)
 
-  // Optional contextual fields
+  // Optional contextual fields (History)
   dateYear        String?   @db.VarChar(100)
   place           String?   @db.VarChar(255)
   people          String?   @db.Text
 
-  // Core content
-  reason          String    @db.Text
-  whatHappened    String    @db.Text
-  result          String    @db.Text
-  interestingFact String    @db.Text
-  examTrick       String    @db.Text
+  // Core content fields (History — nullable for backward compat with new subjects)
+  reason          String?   @db.Text
+  whatHappened    String?   @db.Text
+  result          String?   @db.Text
+  interestingFact String?   @db.Text
+  examTrick       String?   @db.Text
+
+  // Flexible JSON content for non-History subjects
+  content         Json?
 
   // Exam content
   pyq             String?   @db.Text

@@ -1,16 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { quickRevisionUpdateSchema, generateSlug } from "@/lib/zod/quickRevisionSchema";
+import { generateSlug } from "@/lib/zod/quickRevisionSchema";
+import { Prisma } from "@prisma/client";
 import fs from "fs";
 import path from "path";
 
 type Params = { params: Promise<{ id: string }> };
 
+// ─── Subjects that use named columns ─────────────────────────────────────────
+const NAMED_COLUMN_SUBJECTS = new Set(["HISTORY", "HINDI", "ENGLISH"]);
+
 // GET /api/admin/quick-revision/[id]
 export async function GET(_req: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
-    const item = await prisma.quickRevision.findUnique({ where: { id: parseInt(id) } });
+    const item = await prisma.quickRevision.findUnique({
+      where: { id: parseInt(id) },
+    });
     if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(item);
   } catch (error) {
@@ -23,37 +29,90 @@ export async function GET(_req: NextRequest, { params }: Params) {
 export async function PUT(req: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
+    const numericId = parseInt(id);
     const body = await req.json();
 
-    // Auto-generate slug if title changed and slug not explicitly provided
+    const subject: string = body.subject || "";
+
+    // Auto-generate slug if title changed but slug not provided
     if (body.title && !body.slug) {
       body.slug = generateSlug(body.title);
     }
 
-    const parsed = quickRevisionUpdateSchema.safeParse(body);
-    if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
-    }
-
-    const data = parsed.data;
-
     // Ensure slug uniqueness (exclude current record)
-    if (data.slug) {
+    if (body.slug) {
       const existing = await prisma.quickRevision.findFirst({
-        where: { slug: data.slug, NOT: { id: parseInt(id) } },
+        where: { slug: body.slug, NOT: { id: numericId } },
       });
       if (existing) {
-        data.slug = `${data.slug}-${Date.now()}`;
+        body.slug = `${body.slug}-${Date.now()}`;
       }
     }
 
-    const payload: any = { ...data };
-    if (payload.mcqs === null) {
-      payload.mcqs = require('@prisma/client').Prisma.DbNull;
+    // Build update payload
+    const payload: Prisma.QuickRevisionUpdateInput = {
+      ...(body.title && { title: body.title }),
+      ...(body.slug && { slug: body.slug }),
+      ...(subject && { subject: subject as any }),
+      ...(body.chapter !== undefined && { chapter: body.chapter || "General" }),
+      ...(body.className && { className: body.className }),
+      ...(body.board !== undefined && { board: body.board || "All Boards" }),
+      ...(body.examLevel !== undefined && {
+        examLevel: body.examLevel || "Board Exam",
+      }),
+      ...(body.keywords !== undefined && { keywords: body.keywords || null }),
+      ...(body.metaTitle !== undefined && {
+        metaTitle: body.metaTitle || null,
+      }),
+      ...(body.metaDescription !== undefined && {
+        metaDescription: body.metaDescription || null,
+      }),
+      ...(body.thumbnail !== undefined && {
+        thumbnail: body.thumbnail || null,
+      }),
+      ...(body.displayOrder !== undefined && {
+        displayOrder: parseInt(body.displayOrder ?? "0"),
+      }),
+      ...(body.featured !== undefined && { featured: Boolean(body.featured) }),
+      ...(body.published !== undefined && {
+        published: Boolean(body.published),
+      }),
+      ...(body.pyq !== undefined && { pyq: body.pyq || null }),
+      mcqs:
+        body.mcqs && Array.isArray(body.mcqs) && body.mcqs.length > 0
+          ? body.mcqs
+          : Prisma.DbNull,
+    };
+
+    if (NAMED_COLUMN_SUBJECTS.has(subject)) {
+      // History — named columns
+      payload.dateYear = body.dateYear || null;
+      payload.place = body.place || null;
+      payload.people = body.people || null;
+      payload.reason = body.reason || null;
+      payload.whatHappened = body.whatHappened || null;
+      payload.result = body.result || null;
+      payload.interestingFact = body.interestingFact || null;
+      payload.examTrick = body.examTrick || null;
+      payload.content = Prisma.DbNull;
+    } else {
+      // New subjects — JSON content
+      payload.content =
+        body.content && Object.keys(body.content).length > 0
+          ? body.content
+          : Prisma.DbNull;
+      payload.reason = null;
+      payload.whatHappened = null;
+      payload.result = null;
+      payload.interestingFact = null;
+      payload.examTrick = null;
+      payload.dateYear = null;
+      payload.place = null;
+      payload.people = null;
     }
 
     const item = await prisma.quickRevision.update({
-      where: { id: parseInt(id) },
+      where: { id: numericId },
       data: payload,
     });
 
@@ -68,8 +127,11 @@ export async function PUT(req: NextRequest, { params }: Params) {
 export async function DELETE(_req: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
-    const item = await prisma.quickRevision.findUnique({ where: { id: parseInt(id) } });
-    if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    const item = await prisma.quickRevision.findUnique({
+      where: { id: parseInt(id) },
+    });
+    if (!item)
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
 
     // Delete thumbnail file if exists
     if (item.thumbnail) {

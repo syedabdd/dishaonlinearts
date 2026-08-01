@@ -7,11 +7,18 @@ import { motion } from "framer-motion";
 
 const channels = [
   {
+    name: "Disha Arts Classes",
+    subscribers: "435K subscribers",
+    url: "https://youtube.com/@DishaArtsClasses",
+    emoji: "🎨",
+    highlight: true,
+  },
+  {
     name: "Disha Online Classes",
     subscribers: "2.76M subscribers",
     url: "https://www.youtube.com/@DishaOnlineClasses",
     emoji: "👑",
-    highlight: true,
+    highlight: false,
   },
   {
     name: "Disha Hindi & English Classes",
@@ -25,13 +32,6 @@ const channels = [
     subscribers: "971K subscribers",
     url: "https://youtube.com/@DishaScienceClasses",
     emoji: "🔬",
-    highlight: false,
-  },
-  {
-    name: "Disha Arts Classes",
-    subscribers: "425K subscribers",
-    url: "https://youtube.com/@DishaArtsClasses",
-    emoji: "🎨",
     highlight: false,
   },
   {

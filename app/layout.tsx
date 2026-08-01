@@ -140,14 +140,14 @@ export default function RootLayout({
                   "url": "https://www.dishaartsclasses.com",
                   "logo": "https://www.dishaartsclasses.com/Logo.PNG",
                   "sameAs": [
-                    "https://www.youtube.com/@DishaOnlineClasses",
+                    "https://www.youtube.com/@DishaArtsClasses",
                     "https://www.facebook.com/dishaonlineclasses"
                   ]
                 },
                 {
                   "@type": "LocalBusiness",
                   "@id": "https://www.dishaartsclasses.com/#localbusiness",
-                  "name": "Disha Online Classes",
+                  "name": "Disha Arts Classes",
                   "image": "https://www.dishaartsclasses.com/Logo.PNG",
                   "url": "https://www.dishaartsclasses.com",
                   "telephone": "+917700879453",

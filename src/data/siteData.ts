@@ -26,6 +26,6 @@ export const navLinks: NavLink[] = [
 export const stats: Stat[] = [
   { icon: 'Users', value: 50000, suffix: '+', label: 'Students Enrolled' },
   { icon: 'Trophy', value: 95, suffix: '%', label: 'Board Pass Rate' },
-  { icon: 'Youtube', value: 968, suffix: 'K+', label: 'YouTube Subscribers' },
+  { icon: 'Youtube', value: 435, suffix: 'K+', label: 'YouTube Subscribers' },
   { icon: 'GraduationCap', value: 8, suffix: '+ Yrs', label: 'Teaching Excellence' },
 ];

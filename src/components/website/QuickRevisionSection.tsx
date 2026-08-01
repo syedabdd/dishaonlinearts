@@ -15,7 +15,7 @@ export default function QuickRevisionSection() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/api/quick-revision?sort=featured&limit=4")
+    fetch("/api/quick-revision?limit=4")
       .then((r) => r.json())
       .then((d) => {
         setItems(d.items || []);

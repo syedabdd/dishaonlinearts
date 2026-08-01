@@ -269,11 +269,11 @@ export default async function QuickRevisionDetailPage({ params }: Props) {
 
             {/* Thumbnail */}
             {item.thumbnail && (
-              <div className="mt-8 rounded-2xl overflow-hidden shadow-lg max-h-80">
+              <div className="mt-8 rounded-2xl overflow-hidden shadow-lg aspect-video w-full bg-gray-100 flex items-center justify-center">
                 <img
                   src={`/api/images/${item.thumbnail}`}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain md:object-cover"
                 />
               </div>
             )}

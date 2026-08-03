@@ -7,6 +7,8 @@ import {
   Star,
   TrendingUp,
   FileText,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { getQuickRevisions, getQuickRevisionStats } from "./actions";
 import { SUBJECT_LABELS } from "@/lib/zod/quickRevisionSchema";
@@ -14,11 +16,22 @@ import DeleteButton from "./DeleteButton";
 
 export const dynamic = "force-dynamic";
 
-export default async function QuickRevisionAdminPage() {
-  const [items, stats] = await Promise.all([
+export default async function QuickRevisionAdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const resolvedParams = await searchParams;
+  const page = typeof resolvedParams.page === 'string' ? parseInt(resolvedParams.page, 10) : 1;
+  const ITEMS_PER_PAGE = 10;
+
+  const [allItems, stats] = await Promise.all([
     getQuickRevisions(),
     getQuickRevisionStats(),
   ]);
+
+  const totalPages = Math.ceil(allItems.length / ITEMS_PER_PAGE) || 1;
+  const items = allItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const subjectColors: Record<string, string> = {
     HISTORY: "bg-amber-100 text-amber-800",
@@ -242,6 +255,46 @@ export default async function QuickRevisionAdminPage() {
               )}
             </tbody>
           </table>
+          
+          {totalPages > 1 && (
+            <div className="px-5 py-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50">
+              <div className="text-sm text-gray-500 font-medium text-center sm:text-left">
+                Showing {(page - 1) * ITEMS_PER_PAGE + 1} to {Math.min(page * ITEMS_PER_PAGE, allItems.length)} of {allItems.length} entries
+              </div>
+              <div className="flex gap-2">
+                {page > 1 ? (
+                  <Link
+                    href={`/admindp/quick-revision?page=${page - 1}`}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-gray-600 font-medium text-sm hover:bg-gray-50 transition-colors"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Prev
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-gray-400 font-medium text-sm cursor-not-allowed opacity-50"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Prev
+                  </button>
+                )}
+                {page < totalPages ? (
+                  <Link
+                    href={`/admindp/quick-revision?page=${page + 1}`}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-gray-600 font-medium text-sm hover:bg-gray-50 transition-colors"
+                  >
+                    Next <ChevronRight className="w-4 h-4" />
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-200 bg-white text-gray-400 font-medium text-sm cursor-not-allowed opacity-50"
+                  >
+                    Next <ChevronRight className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

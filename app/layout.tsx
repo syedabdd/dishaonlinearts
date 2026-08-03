@@ -90,6 +90,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/Logo.PNG", type: "image/png" }
+    ],
+    shortcut: "/Logo.PNG",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({

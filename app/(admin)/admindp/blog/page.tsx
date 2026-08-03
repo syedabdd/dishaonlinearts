@@ -35,7 +35,7 @@ export default function BlogDashboard() {
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 20;
+  const ITEMS_PER_PAGE = 10;
 
   const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
   const paginatedBlogs = blogs.slice(

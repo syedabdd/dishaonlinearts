@@ -13,7 +13,7 @@ import {
 interface DashboardProps {
   metrics: {
     totalDoubts: number;
-    studyMaterials: number;
+    freeCourses: number;
     liveVisitors: number;
     todaysTraffic: number;
   };
@@ -43,8 +43,8 @@ export default function Dashboard({ metrics, recentFeedback }: DashboardProps) {
       color: "bg-purple-100 text-purple-600",
     },
     {
-      title: "STUDY MATERIALS",
-      value: metrics.studyMaterials,
+      title: "FREE COURSES",
+      value: metrics.freeCourses,
       icon: FileText,
       color: "bg-indigo-100 text-indigo-600",
     },

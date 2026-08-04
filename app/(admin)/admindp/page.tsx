@@ -26,7 +26,8 @@ export default async function AdminPage() {
   const [doubtsResult]: any = await db.execute("SELECT COUNT(*) as count FROM ask_doubts");
   const totalDoubts = doubtsResult[0]?.count || 0;
 
-  const studyMaterials = 0;
+  const [coursesResult]: any = await db.execute("SELECT COUNT(*) as count FROM FreeCourse");
+  const freeCourses = coursesResult[0]?.count || 0;
 
   const recentFeedback: any[] = [];
 
@@ -44,7 +45,7 @@ export default async function AdminPage() {
 
   return (
     <Dashboard 
-      metrics={{ totalDoubts, studyMaterials, liveVisitors, todaysTraffic }} 
+      metrics={{ totalDoubts, freeCourses, liveVisitors, todaysTraffic }} 
       recentFeedback={recentFeedback} 
     />
   );
